@@ -1,0 +1,2 @@
+module HotelChainsHelper
+end

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hotel Chains</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hotel_chains.each do |hotel_chain| %>
+      <tr>
+        <td><%= hotel_chain.name %></td>
+        <td><%= link_to 'Show', hotel_chain %></td>
+        <td><%= link_to 'Edit', edit_hotel_chain_path(hotel_chain) %></td>
+        <td><%= link_to 'Destroy', hotel_chain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hotel Chain', new_hotel_chain_path %>

@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Carga Inicial de Paises y Agencias...
+
+cuba = Country.create(name: "Cuba")
+brazil = Country.create(name: "Brazil")
+canada = Country.create(name: "Canada")
+china = Country.create(name: "China")
+
+cubanacan = Agency.create(name: "Cubanacan", country_id: cuba.id)
+brazilacan = Agency.create(name: "Brazilacan", country_id: brazil.id)
+candanacan = Agency.create(name: "Canadanacan", country_id: canada.id)
+chinanacan = Agency.create(name: "Chinanacan", country_id: china.id)
+

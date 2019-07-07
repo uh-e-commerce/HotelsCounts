@@ -1,0 +1,22 @@
+<%= form_with(model: hotel_chain, local: true) do |form| %>
+  <% if hotel_chain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hotel_chain.errors.count, "error") %> prohibited this hotel_chain from being saved:</h2>
+
+      <ul>
+      <% hotel_chain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
