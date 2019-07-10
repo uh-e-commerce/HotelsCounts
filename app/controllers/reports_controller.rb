@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
   # GET /reports
@@ -24,13 +25,19 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
+    # h_id = params[:id]
+    # hotel = Hotel.find_by(id: h_id)
+    #
+    # @report = hotel.reports.new(report_params)
     @report = Report.new(report_params)
 
     respond_to do |format|
       if @report.save
+        flash[:success] = "Report created successfuly."
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
         format.json { render :show, status: :created, location: @report }
       else
+        flash[:alert] = "Errors where found."
         format.html { render :new }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end

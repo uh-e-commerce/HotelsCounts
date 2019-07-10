@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   # get 'home/about'
   # get 'home/error'
 
-  resources :categories
+  # resources :categories
   # resources :agencies
   resources :hotels do
-    resources :reports
+    resources :reports, only: [:new, :create, :update, :edit, :destroy]
   end
 
   resources :countries

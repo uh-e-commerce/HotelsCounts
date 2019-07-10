@@ -8,13 +8,15 @@
 
 # Carga Inicial de Paises y Agencias...
 
-cuba = Country.create(name: "Cuba")
-brazil = Country.create(name: "Brazil")
-canada = Country.create(name: "Canada")
-china = Country.create(name: "China")
+# cuba = Country.create(name: "Cuba")
+# brazil = Country.create(name: "Brazil")
+# canada = Country.create(name: "Canada")
+# china = Country.create(name: "China")
 
-cubanacan = Agency.create(name: "Cubanacan", country_id: cuba.id)
-brazilacan = Agency.create(name: "Brazilacan", country_id: brazil.id)
-candanacan = Agency.create(name: "Canadanacan", country_id: canada.id)
-chinanacan = Agency.create(name: "Chinanacan", country_id: china.id)
+# cubanacan = Agency.create(name: "Cubanacan", country_id: cuba.id)
+# brazilacan = Agency.create(name: "Brazilacan", country_id: brazil.id)
+# candanacan = Agency.create(name: "Canadanacan", country_id: canada.id)
+# chinanacan = Agency.create(name: "Chinanacan", country_id: china.id)
 
+cubanaCan = HotelChain.create(name: "CubanaCan")
+cubanaCan.hotels.create(name: "Melia Coiba")
