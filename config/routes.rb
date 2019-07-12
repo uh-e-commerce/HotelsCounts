@@ -3,17 +3,17 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  # get 'home/index'
-  # get 'home/about'
-  # get 'home/error'
+  resource :countries, only: [:new, :create, :update]
 
-  # resources :categories
-  # resources :agencies
-  resources :hotels do
-    resources :reports, only: [:new, :create, :update, :edit, :destroy]
+  resources :hotel_chains do
+    resources :hotels
   end
 
-  resources :countries
-  # resources :hotel_chains
+  get '/hotels', action: :index, controller: :hotels
+
+  resources :hotels do
+    resources :reports
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

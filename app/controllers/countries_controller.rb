@@ -1,5 +1,5 @@
 class CountriesController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_country, only: [:show, :edit, :update, :destroy]
 
   # GET /countries

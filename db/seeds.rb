@@ -20,3 +20,6 @@
 
 cubanaCan = HotelChain.create(name: "CubanaCan")
 cubanaCan.hotels.create(name: "Melia Coiba")
+
+Category.create(category: 'Balance de comprobacion')
+Category.create(category: "Antiguedad de partidas")
