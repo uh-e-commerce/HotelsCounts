@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   get '/hotels', action: :index, controller: :hotels
 
   resources :hotels do
-    resources :reports
+    resources :reports, only: [:index, :new, :edit, :create, :update, :destroy]
   end
+
+  resources :reports, only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

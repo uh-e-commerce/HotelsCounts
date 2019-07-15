@@ -5,5 +5,5 @@
   <%= @report.date %>
 </p>
 
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %>
+<%= link_to 'Edit', edit_hotel_report_path(@report) %> |
+<%= link_to 'Back', hotel_reports_path(@report.hotel_id) %>

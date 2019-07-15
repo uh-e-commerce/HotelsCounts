@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
   # GET /reports/new
   def new
     @hotel = Hotel.find_by(params[:hotel_id])
-    @report = @hotel.reports.new(report_params)
+    @report = @hotel.reports.new
     # debugger
   end
 
@@ -29,6 +29,8 @@ class ReportsController < ApplicationController
   def create
     @hotel = Hotel.find_by(params[:hotel_id])
     @report = @hotel.reports.new(report_params)
+
+    # debugger
 
     respond_to do |format|
       if @report.save
@@ -48,8 +50,8 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
-        format.json { render :show, status: :ok, location: @report }
+        format.html { redirect_to report_path(@report.id), notice: 'Report was successfully updated.' }
+        format.json { render :show, status: :ok, location: report_path(@report.id) }
       else
         format.html { render :edit }
         format.json { render json: @report.errors, status: :unprocessable_entity }
@@ -75,6 +77,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:date, :route, :hotel_id, :category_id, :spreadsheet)
+      params.require(:report).permit(:date, :category_id, :spreadsheet)
     end
 end
