@@ -10,8 +10,8 @@ gem 'axlsx_rails'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
-# gem 'roo', '~> 2.8', '>= 2.8.2'
-gem 'roo-xls'
+gem 'roo', '~> 2.8', '>= 2.8.2'
+# gem 'roo-xls'
 
 gem 'devise'
 

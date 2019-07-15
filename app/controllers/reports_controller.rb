@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+  require 'roo'
+
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
@@ -13,11 +15,21 @@ class ReportsController < ApplicationController
   def show
   end
 
+  def build_report
+    @balance_reports = Report.all.find_by(category_id: 1)
+    @antiquity_report = Report.all.find_by(category_id: 2)
+
+    @hotel = Hotel.find_by(params[:hotel_id])
+  end
+
+  def create_report
+
+  end
+
   # GET /reports/new
   def new
     @hotel = Hotel.find_by(params[:hotel_id])
     @report = @hotel.reports.new
-    # debugger
   end
 
   # GET /reports/1/edit
@@ -29,8 +41,6 @@ class ReportsController < ApplicationController
   def create
     @hotel = Hotel.find_by(params[:hotel_id])
     @report = @hotel.reports.new(report_params)
-
-    # debugger
 
     respond_to do |format|
       if @report.save
