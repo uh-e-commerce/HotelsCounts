@@ -1,29 +1,45 @@
-<%= form_with(model: [ @hotel, report ], local: true) do |form| %>
-  <% if report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+<style>
+  body{
+    text-align: center!important;
+  }
+  .form{
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+  }
+</style>
 
+<%= form_with(model: [ @hotel, @report ], local: true, url: hotel_create_new_report_path, html: {class: "form", :method => :post}) do |form| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
       <ul>
-        <% report.errors.full_messages.each do |message| %>
+        <% @report.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
+  <div class="form-group" hidden>
+    <%= form.label :category %>
+    <%= form.number_field :category_id, value: 3%>
+  </div>
+
+  <label>Seleccione la fecha del informe a crear</label>
   <div class="form-group">
-    <%= form.label :date %>
     <%= form.datetime_select :date, class: "form-control"  %>
   </div>
 
   <div class="form-group">
-    <%= form.label :spreadsheet %>
-    <%= form.file_field :spreadsheet, class: "form-control" %>
+    <label>Seleccione el informe de Balance</label>
+    <%= form.collection_select(:balance_id, Report.all.where(category_id: 1), :id, :date)%>
   </div>
 
-  <div class="form-group" hidden>
-    <%= form.label :category %>
-    <%= form.number_field :category_id, value: 3%>
+  <div class="form-group">
+    <label>Seleccione el informe de Antiguedad</label>
+    <%= form.collection_select(:antiguedad_id, Report.all.where(category_id: 2), :id, :date)%>
   </div>
 
   <div class="form-group">

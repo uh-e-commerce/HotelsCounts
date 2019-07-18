@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get '/hotels', action: :index, controller: :hotels
 
   resources :hotels do
-    get '/new_report', action: :build_report, controller: :reports
+    get '/new_report', to: 'reports#build_report', as: 'build_new_report'
+    post '/new_report', to: "reports#create_report", as: 'create_new_report'
     resources :reports, only: [:index, :new, :edit, :create, :update, :destroy]
   end
 
