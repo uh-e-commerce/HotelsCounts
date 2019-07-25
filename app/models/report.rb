@@ -3,6 +3,7 @@ class Report < ApplicationRecord
 
   belongs_to :category
   belongs_to :hotel
+  belongs_to :user
 
   mount_uploader :excel, ExcelUploader
 

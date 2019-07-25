@@ -3,21 +3,28 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-# Custom Gems
+# SpreadSheet Stuff
+gem 'roo', '~> 2.8', '>= 2.8.2'
+gem 'roo-xls'
+gem 'spreadsheet', '~> 1.2', '>= 1.2.4'
 gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails'
 
+# Style
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
-gem 'roo', '~> 2.8', '>= 2.8.2'
-gem 'roo-xls'
+# Administration
+gem 'activeadmin', '~> 1.3', '>= 1.3.1'
 
-gem 'spreadsheet', '~> 1.2', '>= 1.2.4'
+# Pagination
+gem 'better_errors', '~> 2.5'
 
+# User Authentication
 gem 'devise'
 
+# File Upload
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_19_181649) do
+ActiveRecord::Schema.define(version: 2019_07_25_172533) do
 
   create_table "agencies", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2019_07_19_181649) do
     t.integer "hotel_id"
     t.datetime "end_date"
     t.string "excel"
+    t.integer "user_id"
+    t.string "uploaded_by"
     t.index ["category_id"], name: "index_reports_on_category_id"
     t.index ["hotel_id"], name: "index_reports_on_hotel_id"
   end
@@ -66,6 +68,7 @@ ActiveRecord::Schema.define(version: 2019_07_19_181649) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

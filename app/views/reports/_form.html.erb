@@ -35,6 +35,16 @@
     <% end %>
   </div>
 
+  <div class="form-group" hidden>
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, value: current_user.id %>
+  </div>
+
+  <div class="form-group" hidden>
+    <%= form.label :uploaded_by %>
+    <%= form.text_field :uploaded_by, value: current_user.name %>
+  </div>
+
   <div class="form-group">
     <%= form.submit class: "btn btn-primary"%>
   </div>
