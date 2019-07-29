@@ -1,4 +1,16 @@
-<%= form_with(model: country, local: true) do |form| %>
+<style>
+  body{
+    text-align: center!important;
+  }
+  .form-signin{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+</style>
+
+<%= form_with(model: country, local: true, html: {class: "form-signin"}) do |form| %>
   <% if country.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(country.errors.count, "error") %> prohibited this country from being saved:</h2>
@@ -11,12 +23,12 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary"%>
   </div>
 <% end %>
