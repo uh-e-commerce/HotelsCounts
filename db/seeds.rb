@@ -24,3 +24,4 @@ cubanaCan.hotels.create(name: "Melia Coiba")
 Category.create(category: 'Balance de comprobacion')
 Category.create(category: 'Antiguedad de partidas')
 Category.create(category: 'Reporte de cuentas por cobrar')
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
