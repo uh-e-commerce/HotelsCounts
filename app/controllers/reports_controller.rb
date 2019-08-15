@@ -38,60 +38,54 @@ class ReportsController < ApplicationController
     @report = @hotel.reports.new
   end
 
-  def create_report
-    @hotel = Hotel.find_by(params[:hotel_id])
-    @report = @hotel.reports.new(report_params)
 
-    antiguedad = Report.find_by(id: params["report"]["antiguedad_id"].to_i)
-    balance = Report.find_by(id: params["report"]["balance_id"].to_i)
-
-    doc_antiguedad = Roo::Spreadsheet.open("#{antiguedad.report_path}.xls", extension: :xlsx)
-    doc_balance = Roo::Spreadsheet.open("#{balance.report_path}.xls", extension: :xlsx)
-    # doc_ejemplo = Roo::Spreadsheet.open('./docs/ejemplo.xls', extension: :xls) #No da Error
+  #Auxiliar function
+  def add_column(sheet, from, to, from_doc)
+    from_doc.column(from).each_with_index do |member, index|
+      sheet[index,to-1] = member #Name of Agency
+    end
+  end
+  
+  def create_report(doc_balance_path, doc_antiquity_path)
+    # Reading documents...
+    doc_antiquity = Roo::Spreadsheet.open(doc_antiquity_path, extension: :xlsx)
+    doc_balance = Roo::Spreadsheet.open(doc_balance_path, extension: :xlsx)
 
     # Creating report...
     doc_report = Spreadsheet::Workbook.new
     sheet1_doc_report = doc_report.create_worksheet
 
-    #Testing...
-    # puts doc_balance.column 3 #Show the third column that show up the name of companies
-    # puts (doc_balance.column(C)[10]).to_s #Example of element of a column
-    # sheet1_doc_report[C,1] = (doc_balance.column(C)[10]).to_s
-    # puts (doc_balance.column(C)[10]).class.name #Example of element of a column
-
     #Building report...
     add_column(sheet1_doc_report,C, 1, doc_balance)
     add_column(sheet1_doc_report,H, E, doc_balance)
     add_column(sheet1_doc_report,G, F, doc_balance)
-    add_column(sheet1_doc_report,G, M, doc_antiguedad)
-    add_column(sheet1_doc_report,I, O, doc_antiguedad)
-    add_column(sheet1_doc_report,J, P, doc_antiguedad)
-    add_column(sheet1_doc_report,Q, K, doc_antiguedad)
+    add_column(sheet1_doc_report,G, M, doc_antiquity)
+    add_column(sheet1_doc_report,I, O, doc_antiquity)
+    add_column(sheet1_doc_report,J, P, doc_antiquity)
+    add_column(sheet1_doc_report,Q, K, doc_antiquity)
 
-    ### From doc_atiguedad doing (column E) + (column F)
-    col_E = doc_antiguedad.column(E)
-    col_F = doc_antiguedad.column(F)
-    # puts("len of col_E = #{col_E.length} and col_F = #{col_F.length}")
+    ### From doc_atiquity doing (column E) + (column F)
+    col_E = doc_antiquity.column(E)
+    col_F = doc_antiquity.column(F)
     col_sum = []
     len = col_E.length
-    0.upto(len-1) do |i|
-      begin
-        a = col_E[i].to_f
-        b = col_F[i].to_f
-        col_sum << (a + b).to_s
-      rescue => exception
-        col_sum << "".to_s
-      end
+    0.upto(len-1) do |i| 
+        begin
+            a = col_E[i].to_f
+            b = col_F[i].to_f
+            col_sum << (a + b).to_s
+        rescue => exception
+            col_sum << "".to_s   
+        end
     end
 
     col_sum.each_with_index do |member, index|
-      sheet1_doc_report[index,L-1] = member
+        sheet1_doc_report[index,L-1] = member
     end
-    # sheet1_doc_report.column(L).push = doc.antiguedad.column(E+F) #TODO: Sumar estas dos columnas
-    # sheet1_doc_report.column(R).push = doc.antiguedad.column(0) #TODO: Poner en cero esta columna
+    #TODO: Make zero to R column
 
     # #Saving report...
-    doc_report.write "/spreadsheet_files/#{params[:report_name]}.xls"
+    doc_report.write './docs/report.xls'
   end
 
   # GET /reports/new
