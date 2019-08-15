@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
   require 'roo-xls'
+  require 'axlsx'
 
   #Creating constant...
   C = 3 #Agencies
