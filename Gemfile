@@ -8,7 +8,8 @@ gem 'roo', '~> 2.8', '>= 2.8.2'
 gem 'roo-xls'
 gem 'spreadsheet', '~> 1.2', '>= 1.2.4'
 gem 'rubyzip', '~> 1.2', '>= 1.2.3'
-gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+# gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: 'c8ac844'
+gem 'axlsx', '~> 3.0.0.pre'
 # gem 'axlsx_rails'
 
 # Style
