@@ -20,7 +20,7 @@ gem 'jquery-rails'
 gem 'activeadmin', '~> 1.3', '>= 1.3.1'
 
 # Pagination
-gem 'better_errors', '~> 2.5'
+gem 'better_errors', '~> 2.8'
 
 # User Authentication
 gem 'devise'
